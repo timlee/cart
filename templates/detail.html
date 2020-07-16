@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div id="maindiv">
+	<table width="100%" border="0" align="center" cellpadding="4" cellspacing="0">
+      <caption style="display:none;">產品簡介</caption>
+      <tr>
+        <th scope="col" style="display:none;">產品簡介</th>
+      </tr>
+	  <tr valign="top">
+		<td width="200" align="center"><p><img src="/static/images/{{product.pimages}}" alt="產品圖片"/>
+		  <p class="sprice">特價<br />${{product.pprice}}</p></td>
+		<td><p class="subject">產品名稱</p>
+		  <p class="desc">{{product.pname}} </p>
+		  <p class="subject">產品介紹</p>
+		  <p class="desc">{{product.pdescription}}</p></td>
+	  </tr>
+	</table>
+	<p align="center"> 
+	  <a href="/addtocart/add/{{product.id}}/"><img src="{% static "images/icon_cart.png" %}" width="102" height="27" border="0" alt="加入購物車"/></a>　
+	  <a href="javascript:;" onclick="window.history.back();"><img src="{% static "images/icon_back.png" %}" width="102" height="27" border="0" alt="回到上一頁"/></a>
+	</p>	  
+  </div>
+{% endblock %}
