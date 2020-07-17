@@ -1,7 +1,19 @@
 language: python
 
+addons:
+  sonarcloud:
+    organization: "aimerfan"
+    token:
+      secure: $SC_TOKEN
+install:
+  - pip install django
+  - pip install coverage
+
+
 install:
   - pip install django
 
 script:
-  - python manage.py test
+  - coverage run --source = '.' manage.py test --setting=settings_test
+  - coverage xml
+  - sonarscanner -Dsonar.login=$SC_TOKEN
