@@ -9,10 +9,6 @@ install:
   - pip install django
   - pip install coverage
 
-
-install:
-  - pip install django
-
 script:
   - coverage run --source = '.' manage.py test --setting=settings_test
   - coverage xml
