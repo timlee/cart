@@ -10,6 +10,6 @@ install:
   - pip install coverage
 
 script:
-  - coverage run --source = '.' manage.py test --setting=settings_test
+  - coverage run --source = '.' manage.py test --settings=settings_test
   - coverage xml
-  - sonarscanner -Dsonar.login=$SC_TOKEN
+  - sonar-scanner -Dsonar.login=$SC_TOKEN
