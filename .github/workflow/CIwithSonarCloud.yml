@@ -1,0 +1,38 @@
+name: Python CI with SonarCloud
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          pip install django
+          pip install coverage
+
+      - name: Run tests with coverage
+        run: |
+          coverage run --source='.' manage.py test --settings=settings_test
+          coverage xml
+
+      - name: SonarCloud Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          sonar-scanner -Dsonar.organization=aimerfan -Dsonar.login=${{ secrets.SONAR_TOKEN_TOKEN }}
