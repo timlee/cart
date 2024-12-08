@@ -35,6 +35,6 @@ jobs:
 
       - name: SonarCloud Scan
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner -Dsonar.organization=aimerfan -Dsonar.login=${{ secrets.SONAR_TOKEN_TOKEN }}
+          sonar-scanner -Dsonar.organization=aimerfan -Dsonar.login=${{secrets.SONAR_TOKEN }}
