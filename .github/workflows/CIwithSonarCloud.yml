@@ -23,9 +23,15 @@ jobs:
       #   run: |
       #     coverage run --source='.' manage.py test --settings=settings_test
       #     coverage xml
-
-      - name: SonarCloud Scan
+  sonarqube:
+    name: SonarQube
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
         env:
-          SONAR_TOKEN: ${{secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner -Dsonar.organization=aimerfan -Dsonar.login=${{secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
