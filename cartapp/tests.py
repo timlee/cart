@@ -16,14 +16,14 @@ class CartOrderTests(TestCase):
         customer = dict()
         customer['CustomerName'] = 'tester'
         customer['CustomerPhone'] = '0800000000'
-        customer['CustomerAddress'] = '台中市西屯區文華路100號'
+        customer['CustomerAddress'] = '高雄市燕巢區深中路62號'
         customer['paytype'] = 'ATM 轉帳'
 
-        customer['CustomerEmail'] = 'tester@mail.fcu.edu.tw'
+        customer['CustomerEmail'] = 'tester@mail.nknu.edu.tw'
         r = self.client.post('/cartok/', customer)
         self.assertEqual(r.status_code, 200)
 
-        customer['CustomerEmail'] = 'tester#mail.fcu.edu.tw'
+        customer['CustomerEmail'] = 'tester#mail.nknu.edu.tw'
         r = self.client.post('/cartok/', customer)
         self.assertEqual(r.status_code, 302)
         self.assertEqual(r.url, '/cartorder/')
@@ -32,8 +32,8 @@ class CartOrderTests(TestCase):
         customer = dict()
         customer['CustomerName'] = 'tester'
         customer['CustomerPhone'] = '0800000000'
-        customer['CustomerAddress'] = '台中市西屯區文華路100號'
-        customer['CustomerEmail'] = 'tester@mail.fcu.edu.tw'
+        customer['CustomerAddress'] = '高雄市燕巢區深中路62號'
+        customer['CustomerEmail'] = 'tester@mail.nknu.edu.tw'
 
         for key, value in customer.items():
             customer1 = customer.copy()
@@ -48,7 +48,7 @@ class UtilFuncTests(TestCase):
     def test_re_email_true(self):
         self.assertIs(re_email('a123456789@gmail.com'), True)
         self.assertIs(re_email('jjieli@yahoo.com.tw'), True)
-        self.assertIs(re_email('98732115@mail.fcu.edu.tw'), True)
+        self.assertIs(re_email('98732115@mail.nknu.edu.tw'), True)
         self.assertIs(re_email('198asd@o365.hkg.org.hk'), True)
 
     def test_re_email_false(self):
