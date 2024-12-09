@@ -22,10 +22,10 @@ jobs:
       - name: Test with unittest
         run: |
           python3 -m unittest discover -s ./tests/unit  -p 'test_*.py'
-      # - name: Run tests with coverage
-      #   run: |
-      #     coverage run --source='.' manage.py test --settings=settings_test
-      #     coverage xml
+      - name: Run tests with coverage
+        run: |
+          coverage run [manage.py](http://_vscodecontentref_/0) test --settings=settings_test
+          coverage xml
   sonarqube:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
