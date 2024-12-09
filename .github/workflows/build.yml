@@ -12,8 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-
+          fetch-depth: 0
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -31,12 +30,7 @@ jobs:
 
       - name: Run Test With Coverage
         run: coverage run --branch ./manage.py test --noinput --parallel
-      - name: Generate Coverage Report
-        run: coverage xml -o test-coverage.xml
-      - name: Install tox and any other packages
-        run: pip install tox
-      - name: Run tox
-        run: tox -e py
+
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4
         env:
